@@ -56,3 +56,86 @@ int consultaABP(pNodoA *a, int chave) {
         return NULL;
     }
 }
+
+pNodoA* insereNodo(pNodoA *a, int chave) {
+    if(a == NULL) {
+        pNodoA* novoNodo = (pNodoA*) malloc(sizeof(pNodoA));
+        novoNodo->info = chave;
+        novoNodo->dir = NULL;
+        novoNodo->esq = NULL;
+
+        a = novoNodo;
+    } else {
+        if(chave < a->info) {
+            insereNodo(a->esq, chave);
+        } else {
+            insereNodo(a->dir, chave);
+        }
+    }
+
+    return a;
+}
+
+
+pNodoA* achaMaiorValor(pNodoA *a){
+    if (a == NULL) {
+        printf("A árvore está vazia.\n");
+        return NULL;
+    }
+
+    if(a->dir == NULL){
+        printf("Maior valor: %d", a->info);
+        return a;
+    }
+
+
+    return achaMaiorValor(a->dir);
+}
+
+pNodoA* deleteNode(pNodoA *a, int chave) {
+    if (a == NULL) {
+        printf("Nenhum nodo foi deletado!\n");
+        return NULL;
+    }
+
+    if (chave < a->info) {
+        // Procure o nó na subárvore esquerda
+        a->esq = deleteNode(a->esq, chave);
+    } else if (chave > a->info) {
+        // Procure o nó na subárvore direita
+        a->dir = deleteNode(a->dir, chave);
+    } else {
+        // Nó encontrado
+        if (a->esq == NULL && a->dir == NULL) {
+            // Caso 1: Nó folha
+            free(a);
+            return NULL;
+        } else if (a->esq == NULL) {
+            // Caso 2: Apenas filho direito
+            pNodoA *temp = a->dir;
+            free(a);
+            return temp;
+        } else if (a->dir == NULL) {
+            // Caso 2: Apenas filho esquerdo
+            pNodoA *temp = a->esq;
+            free(a);
+            return temp;
+        } else {
+            // Caso 3: Dois filhos
+            // Encontre o menor valor da subárvore direita (sucessor)
+            pNodoA *temp = achaMenorValor(a->dir);
+            a->info = temp->info; // Substitua o valor do nó atual
+            a->dir = deleteNode(a->dir, temp->info); // Remova o sucessor
+        }
+    }
+
+    return a; // Retorne o nó atualizado
+}
+
+// Função auxiliar para encontrar o menor valor
+pNodoA* achaMenorValor(pNodoA *a) {
+    while (a->esq != NULL) {
+        a = a->esq;
+    }
+    return a;
+}

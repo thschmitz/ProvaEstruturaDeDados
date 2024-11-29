@@ -7,4 +7,8 @@ typedef struct TNodoA{
 pNodoA* InsereArvore(pNodoA *a, int ch);
 void imprimeElementos(pNodoA *a);
 void imprimeElementosOrdemCrescente(pNodoA *a);
-void consultABP(pNodoA *a, int chave);
+int consultaABP(pNodoA *a, int chave);
+pNodoA* insereNodo(pNodoA *a, int chave);
+pNodoA* achaMaiorValor(pNodoA *a);
+pNodoA* achaMenorValor(pNodoA *a);
+pNodoA* deleteNode(pNodoA *a, int chave);

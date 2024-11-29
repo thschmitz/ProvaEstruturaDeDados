@@ -19,6 +19,13 @@ int main() {
     imprimeElementos(raiz);
 
     imprimeElementosOrdemCrescente(raiz);
+    achaMaiorValor(raiz);
+    pNodoA* menorValor = achaMenorValor(raiz);
+    printf("\nMenor valor: %d\n", menorValor->info);
+
+    deleteNode(raiz, 2);
+
+    imprimeElementos(raiz);
 
     return 0;
 }
