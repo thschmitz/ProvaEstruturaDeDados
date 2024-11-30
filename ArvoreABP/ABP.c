@@ -176,3 +176,7 @@ int acharNivelNodo(pNodoA *a, int valor) {
         return nivel;
     }
 }
+
+int lowestCommonAncestor(pNodoA *a, int valor01, int valor02) {
+    
+}
