@@ -12,3 +12,5 @@ pNodoA* insereNodo(pNodoA *a, int chave);
 pNodoA* achaMaiorValor(pNodoA *a);
 pNodoA* achaMenorValor(pNodoA *a);
 pNodoA* deleteNode(pNodoA *a, int chave);
+void imprimeNivel(pNodoA *a, int k);
+int acharNivelNodo(pNodoA *a, int valor);

@@ -27,5 +27,13 @@ int main() {
 
     imprimeElementos(raiz);
 
+    printf("\nImprimindo Nivel!\n");
+
+    imprimeNivel(raiz, 2);
+
+    int nivel = acharNivelNodo(raiz, 6);
+    
+    printf("\n%d", nivel);
+
     return 0;
 }

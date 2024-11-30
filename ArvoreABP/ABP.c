@@ -139,3 +139,40 @@ pNodoA* achaMenorValor(pNodoA *a) {
     }
     return a;
 }
+
+int count2 = 0; // Variável global para rastrear o nível atual.
+
+void imprimeNivel(pNodoA *a, int k) {
+    if (a != NULL) {
+        // Incrementa o contador antes de visitar o nó atual.
+        count2++;
+
+        // Se estamos no nível desejado, imprime o valor.
+        if (count2 == k) {
+            printf("%d ", a->info);
+        }
+
+        // Percorre a subárvore direita.
+        imprimeNivel(a->dir, k);
+
+        // Percorre a subárvore esquerda.
+        imprimeNivel(a->esq, k);
+
+        // Ao sair do nó, decrementa o contador.
+        count2--;
+    }
+}
+
+int acharNivelNodo(pNodoA *a, int valor) {
+    static int nivel=0;
+    nivel++;
+    if(a!=NULL&&valor!=a->info) {
+        if(valor > a->info) {
+            acharNivelNodo(a->dir, valor);
+        } else {
+            acharNivelNodo(a->esq, valor);
+        }
+    } else {
+        return nivel;
+    }
+}
