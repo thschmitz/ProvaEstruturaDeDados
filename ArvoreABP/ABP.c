@@ -178,5 +178,47 @@ int acharNivelNodo(pNodoA *a, int valor) {
 }
 
 int lowestCommonAncestor(pNodoA *a, int valor01, int valor02) {
-    
+    if(a!=NULL) {
+        if(valor01 > a->info && valor02 > a->info) {
+            lowestCommonAncestor(a->dir, valor01, valor02);
+        } else if(valor01 < a->info && valor02 < a->info) {
+            lowestCommonAncestor(a->esq, valor01, valor02);
+        } else {
+            return a->info;
+        }
+
+    }
+}
+
+int estritamenteBinaria(pNodoA *a) {
+    if(a==NULL){
+        return 1;
+    }
+
+    if((a->dir != NULL && a->esq != NULL) || (a->dir == NULL && a->esq == NULL)) {
+        return estritamenteBinaria(a->dir) && estritamenteBinaria(a->esq);
+    } else {
+        return 0;
+    }
+
+}
+
+int repeticoes(pNodoA *a, int valor) {
+    if(a==NULL) {
+        return 0;
+    }
+    int qtd=0;
+    if(valor == a->info) {
+        qtd=1;
+    }
+
+    return qtd+repeticoes(a->esq, valor) + repeticoes(a->dir, valor);
+}
+
+int altura(pNodoA *a) {
+    if(a==NULL){
+        return 0;
+    }
+
+    return 1 + (altura(a->dir) > altura(a->esq)? altura(a->dir) : altura(a->esq));
 }

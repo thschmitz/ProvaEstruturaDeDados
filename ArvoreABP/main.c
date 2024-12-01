@@ -23,7 +23,7 @@ int main() {
     pNodoA* menorValor = achaMenorValor(raiz);
     printf("\nMenor valor: %d\n", menorValor->info);
 
-    deleteNode(raiz, 2);
+    //deleteNode(raiz, 2);
 
     imprimeElementos(raiz);
 
@@ -33,7 +33,21 @@ int main() {
 
     int nivel = acharNivelNodo(raiz, 6);
     
-    printf("\n%d", nivel);
+    printf("\n%d\n", nivel);
+
+    int valor = lowestCommonAncestor(raiz, 2, 6);
+    printf("Lowest common ancestor");
+    printf("\n%d\n", valor);
+
+
+    int estrBinaria = estritamenteBinaria(raiz);
+    printf("\n%d", estrBinaria);
+
+    int repet = repeticoes(raiz, 2);
+    printf("\n%d\n", repet);
+
+    int alt = altura(raiz);
+    printf("\n%d\n", alt);
 
     return 0;
 }
