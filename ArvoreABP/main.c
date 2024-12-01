@@ -31,9 +31,9 @@ int main() {
 
     imprimeNivel(raiz, 2);
 
-    int nivel = acharNivelNodo(raiz, 6);
+    int nivel = acharNivelNodo(raiz, 1);
     
-    printf("\n%d\n", nivel);
+    printf("\nNivelNodo: %d\n", nivel);
 
     int valor = lowestCommonAncestor(raiz, 2, 6);
     printf("Lowest common ancestor");

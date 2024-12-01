@@ -163,20 +163,6 @@ void imprimeNivel(pNodoA *a, int k) {
     }
 }
 
-int acharNivelNodo(pNodoA *a, int valor) {
-    static int nivel=0;
-    nivel++;
-    if(a!=NULL&&valor!=a->info) {
-        if(valor > a->info) {
-            acharNivelNodo(a->dir, valor);
-        } else {
-            acharNivelNodo(a->esq, valor);
-        }
-    } else {
-        return nivel;
-    }
-}
-
 int lowestCommonAncestor(pNodoA *a, int valor01, int valor02) {
     if(a!=NULL) {
         if(valor01 > a->info && valor02 > a->info) {
@@ -221,4 +207,18 @@ int altura(pNodoA *a) {
     }
 
     return 1 + (altura(a->dir) > altura(a->esq)? altura(a->dir) : altura(a->esq));
+}
+
+int acharNivelNodo(pNodoA *a, int valor) {
+    if(a == NULL) {
+        return 0;
+    }
+    
+    if(valor < a->info) {
+        return 1 + acharNivelNodo(a->esq, valor);
+    } else if(valor > a->info) {
+        return 1 + acharNivelNodo(a->dir, valor);
+    } else {
+        return 1;
+    }
 }
